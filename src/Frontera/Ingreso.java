@@ -5,6 +5,9 @@
  */
 package Frontera;
 
+import Control.ValidarLogin;
+import Entidad.Usuario;
+
 /**
  *
  * @author lisse
@@ -31,6 +34,7 @@ public class Ingreso extends javax.swing.JPanel {
         lc2 = new javax.swing.JLabel();
         nombreTF = new javax.swing.JTextField();
         contrasenaTF = new javax.swing.JTextField();
+        aceptarB = new javax.swing.JButton();
 
         setForeground(new java.awt.Color(0, 51, 51));
 
@@ -41,6 +45,13 @@ public class Ingreso extends javax.swing.JPanel {
         lc2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lc2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lc2.setText("Cotnraseña:");
+
+        aceptarB.setText("ACEPTAR");
+        aceptarB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarBActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -53,8 +64,10 @@ public class Ingreso extends javax.swing.JPanel {
                     .addComponent(ln2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(nombreTF)
-                    .addComponent(contrasenaTF, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE))
+                    .addComponent(aceptarB, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(nombreTF)
+                        .addComponent(contrasenaTF, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)))
                 .addContainerGap(72, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -68,12 +81,27 @@ public class Ingreso extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lc2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(contrasenaTF, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(aceptarB, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void aceptarBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarBActionPerformed
+        Usuario usuario = new Usuario();
+        usuario.setNombre(nombreTF.getText());
+        usuario.setPassword(contrasenaTF.getText());
+        
+        ValidarLogin validar = new ValidarLogin();
+        
+        System.out.println("----------");
+        String res = validar.verificarLogin(usuario);
+        System.out.println(res);
+    }//GEN-LAST:event_aceptarBActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton aceptarB;
     private javax.swing.JTextField contrasenaTF;
     private javax.swing.JLabel lc2;
     private javax.swing.JLabel ln2;

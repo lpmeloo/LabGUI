@@ -1,11 +1,18 @@
 package Frontera;
 
-public class FramePrincipal extends javax.swing.JFrame {
+import Entidad.Sistema;
+import Entidad.Usuario;
+import java.util.ArrayList;
 
+public class FramePrincipal extends javax.swing.JFrame {    
+    
+    public static Sistema sistema = new Sistema();
     private Registro registro = new Registro();
     private Ingreso ingreso = new Ingreso();
     
     public FramePrincipal() {
+        
+        inicializacion();
         initComponents();
     }
 
@@ -154,6 +161,33 @@ public class FramePrincipal extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void inicializacion(){
+        ArrayList<Usuario> usuarios = new ArrayList<>();
+        
+        Usuario a = new Usuario();
+        Usuario b = new Usuario();
+        Usuario c = new Usuario();
+        
+        a.setNombre("Pepito");
+        a.setPassword("12345");
+        b.setNombre("Lolita");
+        b.setPassword("1234");
+        c.setNombre("Maria");
+        c.setPassword("123");
+        
+        usuarios.add(a);
+        usuarios.add(b);
+        usuarios.add(c);   
+        
+        sistema.setUsuarios(usuarios);
+        
+        for(Usuario i: sistema.getUsuarios()){
+            System.out.println(i.getNombre());
+            System.out.println(i.getPassword());
+            System.out.println("----------");
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ingresoB;
@@ -163,3 +197,4 @@ public class FramePrincipal extends javax.swing.JFrame {
     private javax.swing.JButton registroB;
     // End of variables declaration//GEN-END:variables
 }
+

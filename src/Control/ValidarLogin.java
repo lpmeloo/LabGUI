@@ -1,18 +1,20 @@
 package Control;
 
-import Entidad.Sistema;
+//import Entidad.Sistema;
+import DAO.UsuarioDAO;
 import Entidad.Usuario;
-import Frontera.FramePrincipal;
+//import Frontera.FramePrincipal;
 
 /**
  *
  * @author lisse
  */
 public class ValidarLogin {
-    private Sistema sistema;
+    //private Sistema sistema;
+    private UsuarioDAO dao = new UsuarioDAO();
             
     public ValidarLogin() { 
-        sistema = FramePrincipal.sistema;
+        //sistema = FramePrincipal.sistema;
     }
     
     public String verificarLogin(Usuario usuario){
@@ -22,10 +24,13 @@ public class ValidarLogin {
         if(!verificarLongitudPassword(usuario.getPassword())){
             return("Longitud de contrasena incorrecta");
         }
-        for(Usuario i: sistema.getUsuarios()){
+        /*for(Usuario i: sistema.getUsuarios()){
             if(i.getNombre().equals(usuario.getNombre().toString()) && i.getPassword().equals(usuario.getPassword().toString())){
                 return("Bienvenido");
             }
+        }*/
+        if(dao.leer(usuario) != null){
+            return ("Bienvenido");
         }
         return("Datos incorrectos");
     }

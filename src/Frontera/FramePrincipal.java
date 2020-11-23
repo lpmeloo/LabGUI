@@ -180,9 +180,10 @@ public class FramePrincipal extends javax.swing.JFrame {
         usuarios.add(b);
         usuarios.add(c);   
         
-        sistema.setUsuarios(usuarios);
+        //sistema.setUsuarios(usuarios);
         
-        for(Usuario i: sistema.getUsuarios()){
+        //for(Usuario i: sistema.getUsuarios()){
+        for(Usuario i: usuarios){
             System.out.println(i.getNombre());
             System.out.println(i.getPassword());
             System.out.println("----------");
